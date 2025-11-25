@@ -46,6 +46,11 @@ class PasskeysComponent extends Component
                 request()->getHost(),
                 ['name' => $this->name]
             );
+
+            if (!$this->currentUser()->has_passkeys) {
+                $this->currentUser()->has_passkeys = true;
+                $this->currentUser()->save();
+            }
         } catch (Throwable $e) {
             throw ValidationException::withMessages([
                 'name' => __('passkeys::passkeys.error_something_went_wrong_generating_the_passkey'),
