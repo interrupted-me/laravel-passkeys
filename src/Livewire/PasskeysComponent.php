@@ -31,6 +31,7 @@ class PasskeysComponent extends Component
 
         $this->dispatch('passkeyPropertiesValidated', [
             'passkeyOptions' => json_decode($this->generatePasskeyOptions()),
+            'componentId' => $this->getId(),
         ]);
     }
 
