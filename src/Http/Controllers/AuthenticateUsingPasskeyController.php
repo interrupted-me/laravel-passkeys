@@ -49,6 +49,7 @@ class AuthenticateUsingPasskeyController
         auth()->login($authenticatable, $remember);
 
         Session::regenerate();
+        Session::forget('passkey-authentication-options');
 
         return $this;
     }
