@@ -63,6 +63,11 @@ class PasskeysComponent extends Component
     public function deletePasskey(int $passkeyId): void
     {
         $this->currentUser()->passkeys()->where('id', $passkeyId)->delete();
+
+        if ($this->currentUser()->passkeys()->count() === 0) {
+            $this->currentUser()->has_passkeys = false;
+            $this->currentUser()->save();
+        }
     }
 
     public function currentUser(): Authenticatable&HasPasskeys
