@@ -16,7 +16,7 @@ trait InteractsWithPasskeys
 
     public function getPasskeyName(): string
     {
-        return $this->email;
+        return $this->email ?? $this->name;
     }
 
     public function getPasskeyId(): string
